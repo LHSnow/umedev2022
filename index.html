@@ -20,6 +20,7 @@
 			width: 2em;
 			height: 2em;
 			line-height: 2em;
+			font-size: 1.5em;
 			border-radius: 50%;
 			vertical-align: middle;
 		}
@@ -60,12 +61,16 @@
 		}
 		[src="soho_c3.mp4"] {
 			border-radius: 50%;
+			height: 80vh;
 		}
 		[src="swpc_enlil.mp4"] {
 			filter: contrast(1.3) invert(0.13);
 		}
 		[src="alis4d_geo.svg"] {
 			filter: invert(1);
+		}
+		[src="alis-2020-12-21-5577.mp4"] {
+			filter: contrast(1.4)
 		}
 		.timelapse {
 			display: flex;
@@ -79,18 +84,38 @@
 		.timelapse figcaption {
 			font-size: 0.5em;
 		}
+		.outline-text {
+			--ob: 3px;
+			--oc: black;
+			--ow: 1px;
+			text-shadow: calc(-1*var(--ow)) calc(-1*var(--ow)) var(--ob) var(--oc),
+							     var(--ow) calc(-1*var(--ow)) var(--ob) var(--oc),
+							     calc(-1*var(--ow)) var(--ob) var(--oc),
+							     var(--ow) var(--ow) var(--ob) var(--oc) !important;
+		}
+
+		.title-slide {
+			display: flex;
+			flex-direction: column;
+			height: 80vh;
+		}
+		.title-slide h2 {
+			margin-top: auto;
+		}
 	</style>
 	<body>
 		<section class="reveal">
 			<section class="slides">
-				<section data-markdown>
-					<textarea data-template>
-						![Insitutet för Rymdfysik](irf-neg.svg)
+				<section data-background-image="aurora.jpg">
+					<div class="title-slide" data-markdown>
+						<textarea data-template>
+							![Insitutet för Rymdfysik](irf-neg.svg)
 
-						## Norrsken i fyra dimensioner
+							## Norrsken i fyra dimensioner
 
-						Lars-Henrik Snow
-					</textarea>
+							Lars-Henrik Snow
+						</textarea>
+					</div>
 				</section>
 				<section>
 					<video src="soho_c3.mp4" loop></video>
@@ -134,7 +159,7 @@
 						</figure>
 						<figure>
 							<figcaption>1Mpx, 16-bit, upp till 100hz, Δ40Å</figcaption>
-							<video src="alis-2020-12-21-5577.mp4" style="filter: contrast(1.4)"></video>
+							<video src="alis-2020-12-21-5577.mp4"></video>
 						</figure>
 					</div>
 				</section>

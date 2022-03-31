@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="dist/theme/black.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="plugin/highlight/github-dark.css">
 	</head>
 	<style>
 		.particle {
@@ -61,6 +61,11 @@
 		}
 		[src="soho_c3.mp4"] {
 			border-radius: 50%;
+		}
+		[src="soho_c3.mp4"],
+		[src^="magnetosheath"],
+	  [src="06.ALIS4D_Silki.jpg"],
+		[src="rotation.mp4"] {
 			height: 80vh;
 		}
 		[src="swpc_enlil.mp4"] {
@@ -69,9 +74,13 @@
 		[src="alis4d_geo.svg"] {
 			filter: invert(1);
 		}
+		[src="numpy-arrays.png"] {
+			filter: invert(0.9);
+		}
 		[src="alis-2020-12-21-5577.mp4"] {
 			filter: contrast(1.4)
 		}
+		.camera,
 		.timelapse {
 			display: flex;
 			flex-direction: row;
@@ -84,16 +93,23 @@
 		.timelapse figcaption {
 			font-size: 0.5em;
 		}
-		.outline-text {
-			--ob: 3px;
-			--oc: black;
-			--ow: 1px;
-			text-shadow: calc(-1*var(--ow)) calc(-1*var(--ow)) var(--ob) var(--oc),
-							     var(--ow) calc(-1*var(--ow)) var(--ob) var(--oc),
-							     calc(-1*var(--ow)) var(--ob) var(--oc),
-							     var(--ow) var(--ow) var(--ob) var(--oc) !important;
+		.libraries {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			margin: auto;
 		}
-
+		.libraries figure {
+			height: 20vh;
+			width: auto;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+		.libraries figcaption {
+			margin-right: 1em;
+			margin-left: 3em;
+		}
 		.title-slide {
 			display: flex;
 			flex-direction: column;
@@ -101,6 +117,9 @@
 		}
 		.title-slide h2 {
 			margin-top: auto;
+		}
+		.reveal pre {
+			width: 100%;
 		}
 	</style>
 	<body>
@@ -181,6 +200,281 @@
 				<section>
 					<img src="06.ALIS4D_Silki.jpg">
 				</section>
+				<section data-markdown>
+					<textarea data-template>
+						* Works on my machine
+						* Från pixlar till fysik
+						* Till lärde män på latin
+					</textarea>
+				</section>
+				<section>
+					<h2>Reproducerbarhet</h2>
+					<p>"Works on my machine"</p>
+				</section>
+				<section>
+					<h1>DevOps</h1>
+				</section>
+				<section>
+					<div class="camera">
+						<div>
+							<img src="camera.svg">
+						</div>
+						<div class="fragment">
+							\[\begin{aligned}
+							R = f \times sin(\theta \times \alpha) \\
+							\theta = 1/\alpha \times asin(1/f \times R)
+							\end{aligned} \]
+						</div>
+					</div>
+				</section>
+				<section>
+					<video src="rotation.mp4"></video>
+				</section>
+				<section>
+					<img src="alis4d_geo.svg">
+				</section>
+				<section>
+					<img src="earth.svg">
+				</section>
+				<section>
+					<h2>Trigonometri + Linjär algebra</h2>
+					<p>Rotationsmatriser och coordinatsystem</p>
+				</section>
+				<section>
+					<div class="libraries">
+						<figure>
+							<figcaption>AstroPy</figcaption>
+							<img src="astropy.svg">
+						</figure>
+						<figure>
+							<figcaption>NumPy</figcaption>
+							<img src="numpy.svg">
+						</figure>
+						<figure>
+							<figcaption>SciPy</figcaption>
+							<img src="scipy.svg">
+						</figure>
+					</div>
+				</section>
+				<section>
+					<pre>
+						<code class="language-python"
+							data-trim data-auto-animate
+							data-line-numbers="1-2|11-12|20-24|63-69">
+def starpos(ra, decl, date_i, utc, lat, long):
+	"""az, ze and apparent zenith angles for a sky object"""
+	# calculate local sidereal time.
+	rsidtime = utc2losidt(date_i, utc, long) / 12 * pi
+
+	rra = ra.transpose() / 12 * pi
+	rdecl = decl.transpose() / 180 * pi
+	rlong = long / 180 * pi
+	rlat = lat / 180 * pi
+
+	t = (date2juldate(date_i) - 2451545.0) / 36525
+	d = date2juldate(date_i) - date2juldate([1985, 1, 1])
+
+	# Cartesian coordinates on the celestial sphere
+	r = eye(3)
+	r[0, :] = cos(rdecl) * cos(rra)
+	r[1, :] = cos(rdecl) * sin(rra)
+	r[2, :] = sin(rdecl)
+
+	#  rigorous precession
+	Za = (0.6406161 * t + 0.0000839 * t ** 2 + 0.0000050 * t ** 3) / 180 * pi
+	za = (0.6406161 * t + 0.0003041 * t ** 2 + 0.0000051 * t ** 3) / 180 * pi
+	ta = (0.5567530 * t + 0.0001185 * t ** 2 + 0.0000116 * t ** 3) / 180 * pi
+
+	P = [[-sin(Za) * sin(za) + cos(Za) * cos(za) * cos(ta),
+	     -cos(Za) * sin(za) - sin(Za) * cos(za) * cos(ta),
+	     -cos(za) * sin(ta)],
+	    [sin(Za) * cos(za) + cos(Za) * sin(za) * cos(ta),
+	     cos(Za) * cos(za) - sin(Za) * sin(za) * cos(ta), -sin(za) * sin(ta)],
+	    [cos(Za) * sin(ta), sin(Za) * sin(ta), cos(ta)]]
+
+	# replace unimplemented nutation(Obsdate,utc) scilab function with
+	# its default output
+	N = eye(3)
+
+	rp = N * P * r
+	rdecl = arcsin(rp[3, :])
+	rra = arctan(rp[2, :] / cos(rdecl), rp[1, :] / cos(rdecl))
+
+	rcorrdecl = rdecl
+	cosaz = cos(rra)
+	sinaz = sin(rra)
+	rcorrra = rra
+
+	alt = arcsin(
+	   cos(rsidtime - rra) * cos(rdecl) * cos(rlat) + sin(rdecl) * sin(rlat))
+	ze = pi / 2 - alt.transpose()
+
+	sina = sin(rsidtime - rra) * cos(rdecl) / cos(alt)
+	cosa = (cos(rsidtime - rra) * cos(rdecl) * sin(rlat) - sin(rdecl) * cos(
+	   rlat)) / cos(alt)
+	az = arctan(sina.transpose(), cosa.transpose()) + pi
+	apze = refrcorr(ze)
+
+	return az, ze, apze
+
+def starpos(ra, dec, utcTime, lat, long, alt=0):
+    """az, ze and apparent zenith angles for a sky object.
+		Using astropy SkyCoord."""
+
+    ra = np.array(ra * u.hourangle)
+    dec = np.array(dec * u.degree)
+    sky_coord = SkyCoord(ra, dec, frame=FK5, unit=(u.hourangle, u.degree))
+    earth_location = EarthLocation.from_geodetic(lat=lat * u.degree,
+                                                 lon=long * u.degree,
+                                                 height=alt)
+    observation_time = Time(utcTime)
+    sky_obj = sky_coord.transform_to(AltAz(obstime=observation_time,
+                                           location=earth_location))
+    vectorized_refrcorr = np.vectorize(refrcorr)
+    apze = vectorized_refrcorr(sky_obj.zen.radian)
+
+    return sky_obj.az.radian, sky_obj.zen.radian, apze
+						</code>
+					</pre>
+				</section>
+				<section>
+					<pre>
+						<code class="language-python"
+							data-trim data-auto-animate
+							data-line-numbers="3-10|20-26|27-32|49-50">
+class TestAstropyStarposHasSimilarResultToScilabImplementation:
+    def setup(self):
+        # BSC5P catalog objects 1-indexed 197,961,9033,9041,9058,9074
+        self.ra = np.array(
+            [0.7775,
+             3.2633333,
+             23.912944,
+             23.944861,
+             23.988528,
+             0.0361667] * u.hourangle)
+        self.decl = np.array(
+            [69.325,
+             57.140833,
+             0.1091667,
+             22.648056,
+             6.8633333,
+             27.081944] * u.degree)
+
+    def test_for_optiklab_2020(self):
+        lat = 67.840722
+        long = 20.411111
+        utcTime = "2020-12-21 19:09:00"
+        az, ze, apze = starpos(self.ra, self.decl,
+                               utcTime,
+                               lat,
+                               long)
+        az_sci = np.array([5.0895443,
+                           2.6148459,
+                           3.8705633,
+                           3.985045,
+                           3.8820959,
+                           3.9897205])
+        ze_sci = np.array([0.1693805,
+                           0.2042894,
+                           1.2718188,
+                           0.8912492,
+                           1.1527829,
+                           0.8109606])
+        apze_sci = np.array([0.1693324,
+                             0.2042311,
+                             1.2709067,
+                             0.8909012,
+                             1.1521501,
+                             0.8106647])
+
+        rel_to_scilab_ze = _great_circle_distance(az, ze, az_sci, ze_sci)
+        rel_to_scilab_apze = _great_circle_distance(az, apze, az_sci, apze_sci)
+
+        npt.assert_allclose(rel_to_scilab_ze, np.zeros(6), atol=1e-03)
+        npt.assert_allclose(rel_to_scilab_apze, np.zeros(6), atol=1e-03)
+
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h1>Vectorization</h1>
+				</section>
+				<section>
+					<img src="numpy-arrays.png">
+				</section>
+				<section>
+					<pre>
+						<code data-trim data-noescape>
+def inv_project_directions(self, u, v, image_size, cmtr=None):
+    """Transfers pixels line of sight
+		to azimuth and zenith angles"""
+    phi, theta = self.inv_model(u, v, image_size)
+    return self._relative_to_local_horizon(phi, theta, cmtr)
+						</code>
+					</pre>
+				</section>
+				<section>
+					<pre>
+						<code class="language-python"
+							data-trim data-auto-animate
+							data-line-numbers="3|16-21|26-27|35|36-37|29-30">
+class TestProjectionTransferEdgeCases:
+  @pytest.fixture(autouse=True)
+  def transfer_and_its_inverse_with_edge_cases(self):
+      self.camera = Camera(
+          horizontal_focal_length=6.13576098e-01,
+          vertical_focal_length=-6.13937768e-01,
+          alpha_rotation=3.11357351e+01,
+          beta_rotation=7.86213938e+00,
+          gamma_rotation=3.04635402e+00,
+          horizontal_displacement=3.88947223e-03,
+          vertical_displacement=-2.14373428e-02,
+          pinhole_deviation=1.00651214e+00,
+      )
+      shape = (1024, 1024)
+      self.shape = shape
+      edges = [
+          np.full((shape[0],), 0, dtype=np.int64),
+          np.arange(shape[1], dtype=np.int64),
+          np.full((shape[0],), shape[1] - 1, dtype=np.int64),
+          np.arange(shape[1], dtype=np.int64)[::-1],
+      ]
+
+      self.u = np.hstack(edges)
+      self.v = np.hstack(edges)
+
+      # each test runs here
+      yield
+
+      npt.assert_allclose(self.u_prime, self.u, atol=12)
+      npt.assert_allclose(self.v_prime, self.v, atol=12)
+
+  def test_alis_projection(self):
+      self.camera.optical_transfer = alis3d
+      self.camera.inverse_optical_transfer = inv_alis3d
+      az, ze = self.camera.inv_project_directions(self.u, self.v, self.shape)
+      self.u_prime, self.v_prime = self.camera.project_directions(az, ze,
+                                                                  self.shape)
+						</code>
+					</pre>
+				</section>
+				<section>
+					<div class="camera">
+						<div>
+							<img src="camera.svg">
+						</div>
+						<div data-markdown>
+							<textarea data-template>
+								## Lars-Henrik.Snow@irf.se
+
+								### Twitter: @l9ksnow
+
+								slides: lhsnow.github.io/umedev2022
+							</textarea>
+						</div>
+					</div>
+
+				</section>
 			</div>
 		</div>
 
@@ -190,6 +484,7 @@
 		<script src="plugin/highlight/highlight.js"></script>
 		<script src="plugin/animate/plugin.js"></script>
 		<script src="plugin/animate/svg.min.js"></script>
+		<script src="plugin/math/math.js"></script>
 		<script>
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
@@ -199,9 +494,10 @@
 				controls: false,
 				autoPlayMedia: true,
 				progress: false,
+				width: 1200,
 
 				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
 			});
 		</script>
 	</body>

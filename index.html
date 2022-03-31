@@ -13,9 +13,76 @@
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
+	<style>
+		.particle {
+			display: inline-block;
+			border: 0.1em solid white;
+			width: 2em;
+			height: 2em;
+			line-height: 2em;
+			border-radius: 50%;
+			vertical-align: middle;
+		}
+		.oxygen {
+			color: #ff0000;
+			border-color: #ff0000;
+		}
+		.collision {
+			display: flex;
+			width: 50%;
+			justify-content: space-between;
+		}
+		.hit {
+			justify-content: flex-end;
+		}
+		.ion {
+			color: #ffff00;
+			border-color: #ffff00;
+		}
+		.excited {
+			color: #ffa500;
+			border-color: #ffa500;
+			border-width: 1em;
+		}
+		.emission {
+			vertical-align: middle;
+			display: inline-block;
+			color: #00ff00;
+			font-size: 2em;
+			margin-left: -.15em;
+			position: relative;
+		}
+		.emission sup {
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-size: .4em;
+		}
+		[src="soho_c3.mp4"] {
+			border-radius: 50%;
+		}
+		[src="swpc_enlil.mp4"] {
+			filter: contrast(1.3) invert(0.13);
+		}
+		[src="alis4d_geo.svg"] {
+			filter: invert(1);
+		}
+		.timelapse {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+		}
+		.timelapse figure {
+			display: flex;
+			flex-direction: column;
+		}
+		.timelapse figcaption {
+			font-size: 0.5em;
+		}
+	</style>
 	<body>
-		<div class="reveal">
-			<div class="slides">
+		<section class="reveal">
+			<section class="slides">
 				<section data-markdown>
 					<textarea data-template>
 						![Insitutet för Rymdfysik](irf-neg.svg)
@@ -26,10 +93,10 @@
 					</textarea>
 				</section>
 				<section>
-					<video src="soho_c3.mp4" style="border-radius: 50%;" loop></video>
+					<video src="soho_c3.mp4" loop></video>
 				</section>
 				<section>
-					<video src="swpc_enlil.mp4" style="filter: contrast(1.3) invert(0.13);" loop></video>
+					<video src="swpc_enlil.mp4" loop></video>
 				</section>
 				<section>
 					<img src="magnetosheath.svg">
@@ -40,11 +107,39 @@
 				<section>
 					<img src="Magnetic_deflection_helical_path.svg">
 				</section>
-				<section data-background-color="black">
-					<div style="display: flex; flex-direction: row; align-items: flex-start">
-						<video src="allsky-2020-12-21.mp4"></video>
-						<video src="alis-2020-12-21-5577.mp4" style="filter: contrast(1.4)"></video>
+				<section data-auto-animate>
+					<div class="collision">
+						<span class="particle ion" data-id="ion">H<sup>+</sup></span>
+						<span class="particle oxygen" data-id="oxygen">O</span>
 					</div>
+				</section>
+				<section data-auto-animate data-auto-animate-easing="linear" data-auto-animate-duration="0.2">
+					<div class="collision hit">
+						<span class="particle ion" data-id="ion">H<sup>+</sup></span>
+						<span class="particle oxygen" data-id="oxygen">O</span>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<span class="particle excited" data-id="oxygen">O</span>
+				</section>
+				<section data-auto-animate>
+					<span class="particle oxygen" data-id="oxygen">O</span>
+					<span class="emission">⟿<sup>5577Å</sup></span>
+				</section>
+				<section data-background-color="black">
+					<div class="timelapse">
+						<figure>
+							<figcaption>8Mpx, 8-bit, 1 bild/minut</figcaption>
+							<video src="allsky-2020-12-21.mp4"></video>
+						</figure>
+						<figure>
+							<figcaption>1Mpx, 16-bit, upp till 100hz, Δ40Å</figcaption>
+							<video src="alis-2020-12-21-5577.mp4" style="filter: contrast(1.4)"></video>
+						</figure>
+					</div>
+				</section>
+				<section>
+					<img src="alis4d_geo.svg">
 				</section>
 				<section>
 					<img src="IRF_pres_eng_apr16-2.jpg">

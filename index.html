@@ -36,7 +36,7 @@
 		.hit {
 			justify-content: flex-end;
 		}
-		.ion {
+		.electron {
 			color: #ffff00;
 			border-color: #ffff00;
 		}
@@ -131,7 +131,7 @@
 				<section data-background-image="aurora.jpg" class="r-fit-text">
 					<div class="title-slide" data-markdown>
 						<textarea data-template>
-							![Insitutet för Rymdfysik](irf-neg.svg)
+							![Institutet för Rymdfysik](irf-neg.svg)
 
 							## Norrsken i fyra dimensioner
 
@@ -154,13 +154,13 @@
 				</section>
 				<section data-auto-animate>
 					<div class="collision">
-						<span class="particle ion" data-id="ion">H<sup>+</sup></span>
+						<span class="particle electron" data-id="electron">&mdash;</span>
 						<span class="particle oxygen" data-id="oxygen">O</span>
 					</div>
 				</section>
 				<section data-auto-animate data-auto-animate-easing="linear" data-auto-animate-duration="0.2">
 					<div class="collision hit">
-						<span class="particle ion" data-id="ion">H<sup>+</sup></span>
+						<span class="particle electron" data-id="electron">&mdash;</span>
 						<span class="particle oxygen" data-id="oxygen">O</span>
 					</div>
 				</section>
@@ -175,11 +175,11 @@
 					<div class="timelapse">
 						<figure>
 							<figcaption>8Mpx, 8-bit, 1 bild/minut</figcaption>
-							<video src="allsky-2020-12-21.mp4"></video>
+							<video src="allsky-2020-12-21.mp4" loop></video>
 						</figure>
 						<figure>
 							<figcaption>1Mpx, 16-bit, upp till 100hz, Δ40Å</figcaption>
-							<video src="alis-2020-12-21-5577.mp4"></video>
+							<video src="alis-2020-12-21-5577.mp4" loop></video>
 						</figure>
 					</div>
 				</section>
@@ -217,8 +217,8 @@
 						</div>
 						<div class="fragment">
 							$$
-							R = f \times sin(\theta \times \alpha) \\
-							\theta = 1/\alpha \times asin(1/f \times R)
+							R = f \sin(\theta \alpha) \\
+							\theta = \frac{1} {\alpha} \operatorname{asin} \left( \frac{f} {R} \right)
 							$$
 						</div>
 					</div>
@@ -436,7 +436,7 @@ def inv_project_directions(self, u, v, image_size, cmtr=None):
 					<pre>
 						<code class="language-python"
 							data-trim
-							data-line-numbers="3|16-21|26-27|35|36-37|29-30">
+							data-line-numbers="3|16-21|35|36-37|29-30|26-27">
 class TestProjectionTransferEdgeCases:
   @pytest.fixture(autouse=True)
   def transfer_and_its_inverse_with_edge_cases(self):

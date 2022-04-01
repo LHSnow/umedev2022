@@ -28,7 +28,7 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="1.1386803"
-     inkscape:cx="206.81837"
+     inkscape:cx="8.3429914"
      inkscape:cy="383.3385"
      inkscape:window-width="3372"
      inkscape:window-height="1376"
@@ -38,7 +38,7 @@
      inkscape:current-layer="svg8379" />
   <g
      id="g10459"
-     transform="matrix(0.86714787,-0.49805077,-0.49805077,-0.86714787,61.877402,765.00871)">
+     transform="rotate(-150.12888,283.4951,334.09981)">
     <text
        id="dp_text012"
        xml:space="preserve"
@@ -72,107 +72,107 @@
        d="m 387.764,180.7657 c -50.761,-28.504 -128.868,17.365 -161.753,60 -38.352,49.721 -50.975,116.282 -14.247,144 34.813,26.272 69.153,8.606 92,-12 33.737,-30.43 55.2,-80.491 56,-136.8 0.8,-56.31 -11.2,-90.4 -53.6,-114.4" />
     <path
        id="dp_path065"
-       fill="#FF0000"
+       fill="#ff0000"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 401.191,452.5197 17.806,4.466 -8.193,11.173 z" />
     <path
        id="dp_path066"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 101.964,187.8417 144.727,102.705" />
     <path
        id="dp_path067"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="M 109.964,144.2637 316.02,290.4907" />
     <path
        id="dp_path068"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 164.621,123.8417 224.59,159.38" />
     <path
        id="dp_path069"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 169.964,73.8417 227.773,161.638" />
     <path
        id="dp_path070"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 65.964,214.8417 185.209,131.433" />
     <path
        id="dp_path071"
-       fill="#FF0000"
+       fill="#ff0000"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 379.191,384.2397 17.806,4.466 -8.193,11.173 z" />
     <path
        id="dp_path072"
-       fill="#FF0000"
+       fill="#ff0000"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 345.141,251.9467 17.807,4.465 -8.193,11.174 z" />
     <path
        id="dp_path073"
-       fill="#FF0000"
+       fill="#ff0000"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 327.335,185.8057 17.806,4.465 -8.193,11.173 z" />
     <path
        id="dp_path075"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 397.737,235.4797 262.227,186.09" />
     <path
        id="dp_path076"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 389.211,283.2217 265.41,188.348" />
     <path
        id="dp_path077"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 316.02,290.4907 283.944,201.501" />
     <path
        id="dp_path078"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 246.691,290.5467 345.273,245.023" />
     <path
        id="dp_path079"
        fill="none"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 251.173,346.2747 304.791,216.295" />
     <path
        id="dp_path080"
-       fill="#FF0000"
+       fill="#ff0000"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 361.212,322.5627 17.807,4.465 -8.194,11.174 z" />
     <path
@@ -251,7 +251,7 @@
        transform="translate(-26.6,-58.4253)">
       <path
          id="dp_path093"
-         fill="#FF0000"
+         fill="#ff0000"
          fill-rule="evenodd"
          d="m 458.907,480.265 10.318,16.778 3.426,-4.77 84.277,60.538 2.024,-2.818 -84.277,-60.537 3.425,-4.769 z" />
       <g
@@ -260,7 +260,7 @@
            id="dp_group095">
           <path
              id="dp_path096"
-             fill="#FF0000"
+             fill="#ff0000"
              d="m 469.199,497.823 3.55,-4.947 84.278,60.537 2.528,-3.518 -84.278,-60.538 3.554,-4.945 -20.834,-4.8 11.202,18.211 0.053,-1.56 -9.436,-15.344 17.553,4.042 -3.297,4.594 84.277,60.537 -1.52,2.116 -84.277,-60.537 -3.3,4.592 z" />
         </g>
       </g>
@@ -268,7 +268,7 @@
     <text
        id="dp_text051"
        xml:space="preserve"
-       fill="#FF0000"
+       fill="#ff0000"
        font-family="'Times New Roman'"
        font-size="16px"
        font-weight="400"
@@ -288,7 +288,7 @@
            id="dp_group113">
           <path
              id="dp_path114"
-             fill="#FF0000"
+             fill="#ff0000"
              d="m 610.333,492.463 5.232,3.133 -29.981,50.015 3.545,2.126 29.98,-50.014 5.232,3.136 0.742,-17.12 -14.75,8.724 1.302,0.002 12.73,-7.529 -0.64,14.776 -4.842,-2.901 -29.98,50.014 -2.407,-1.441 29.981,-50.015 -4.842,-2.904 z" />
         </g>
       </g>
@@ -297,7 +297,7 @@
        id="dp_path117"
        fill="#fad44b"
        fill-rule="evenodd"
-       stroke="#FF0000"
+       stroke="#ff0000"
        stroke-width="1.33333"
        d="m 556.22,485.4577 c 13.003,3.748 20.505,17.328 16.757,30.33 -3.748,13.003 -17.328,20.506 -30.33,16.758 -13.003,-3.748 -20.506,-17.328 -16.758,-30.331 3.748,-13.003 17.328,-20.505 30.331,-16.757 z" />
   </g>

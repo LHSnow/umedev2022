@@ -62,11 +62,6 @@
 		[src="soho_c3.mp4"] {
 			border-radius: 50%;
 		}
-		[src="soho_c3.mp4"],
-		[src="rotation.mp4"] {
-			height: 800px;
-			width: auto;
-		}
 		[src="swpc_enlil.mp4"] {
 			filter: contrast(1.3) invert(0.13);
 		}
@@ -148,7 +143,7 @@
 					</div>
 				</section>
 				<section>
-					<video src="soho_c3.mp4" loop></video>
+					<video src="soho_c3.mp4" class="r-stretch" loop></video>
 				</section>
 				<section>
 					<video src="swpc_enlil.mp4" loop></video>
@@ -232,7 +227,7 @@
 					</div>
 				</section>
 				<section>
-					<video src="rotation.mp4"></video>
+					<video src="rotation.mp4" class="r-stretch"></video>
 				</section>
 				<section>
 					<img src="alis4d_geo.svg">
@@ -532,6 +527,7 @@ class TestProjectionTransferEdgeCases:
 				autoPlayMedia: true,
 				progress: false,
 				width: 1200,
+				slideNumber: "c",
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]

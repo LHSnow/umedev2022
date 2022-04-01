@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="dist/theme/black.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/github-dark.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
 	</head>
 	<style>
 		.particle {
@@ -62,11 +62,12 @@
 		[src="soho_c3.mp4"] {
 			border-radius: 50%;
 		}
+
 		[src="soho_c3.mp4"],
 		[src^="magnetosheath"],
-	  [src="06.ALIS4D_Silki.jpg"],
+	  	[src="06.ALIS4D_Silki.jpg"],
 		[src="rotation.mp4"] {
-			height: 80vh;
+			/*height: 80vh;*/
 		}
 		[src="swpc_enlil.mp4"] {
 			filter: contrast(1.3) invert(0.13);
@@ -120,6 +121,17 @@
 		}
 		.reveal pre {
 			width: 100%;
+		}
+		.masked .ma td {
+			background-color: #74d275;
+			color: black;
+		}
+		.masked .bool td:not(:empty) {
+			background-color: #296e2a;
+			color: transparent;
+		}
+		.masked .ma td:empty {
+			background-color: transparent;
 		}
 	</style>
 	<body>
@@ -259,7 +271,7 @@
 				<section>
 					<pre>
 						<code class="language-python"
-							data-trim data-auto-animate
+							data-trim
 							data-line-numbers="1-2|11-12|20-24|63-69">
 def starpos(ra, decl, date_i, utc, lat, long):
 	"""az, ze and apparent zenith angles for a sky object"""
@@ -340,7 +352,7 @@ def starpos(ra, dec, utcTime, lat, long, alt=0):
 				<section>
 					<pre>
 						<code class="language-python"
-							data-trim data-auto-animate
+							data-trim
 							data-line-numbers="3-10|20-26|27-32|49-50">
 class TestAstropyStarposHasSimilarResultToScilabImplementation:
     def setup(self):
@@ -404,10 +416,33 @@ class TestAstropyStarposHasSimilarResultToScilabImplementation:
 				</section>
 				<section>
 					<pre>
-						<code data-trim data-noescape>
+						<code class="language-python"
+							  data-trim
+							  data-line-numbers="4|5|6|7">
+class StarCatalog:
+	"""Abstract Base Class for accessing listed properties from Star Catalogues like BSC5P
+	"""
+	ra = np.array([], dtype=float)
+	dec = np.array([], dtype=float)
+	magnitude = np.array([], dtype=float)
+	bright_star_no = np.array([], dtype=int)
+						</code>
+					</pre>
+				</section>
+				<section>
+					<table class="masked">
+						<tr class="data"><th>Memory</th><td>1</td><td>2</td><td>5</td><td>8</td><td>4</td><td>3</td>
+						</tr>
+						<tr class="bool"><th>Odd</th><td>x</td><td></td><td>x</td><td></td><td></td><td>x</td></tr>
+						<tr class="bool"><th>&gt;2</th><td></td><td></td><td>x</td><td>x</td><td>x</td><td>x</td></tr>
+						<tr class="ma"><th>Masked</th><td></td><td></td><td>5</td><td></td><td></td><td>3</td></tr>
+					</table>
+				</section>
+				<section>
+					<pre>
+						<code data-trim data-noescape class="language-python">
 def inv_project_directions(self, u, v, image_size, cmtr=None):
-    """Transfers pixels line of sight
-		to azimuth and zenith angles"""
+    """Transfers pixels line of sight to azimuth and zenith angles"""
     phi, theta = self.inv_model(u, v, image_size)
     return self._relative_to_local_horizon(phi, theta, cmtr)
 						</code>
@@ -416,7 +451,7 @@ def inv_project_directions(self, u, v, image_size, cmtr=None):
 				<section>
 					<pre>
 						<code class="language-python"
-							data-trim data-auto-animate
+							data-trim
 							data-line-numbers="3|16-21|26-27|35|36-37|29-30">
 class TestProjectionTransferEdgeCases:
   @pytest.fixture(autouse=True)
@@ -457,6 +492,16 @@ class TestProjectionTransferEdgeCases:
                                                                   self.shape)
 						</code>
 					</pre>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Sammanfattning
+
+						* Solvind och elektromagnetism
+						* Mer DevOps
+						* Gemensamt språk
+						* Effektiva datastrukturer
+					</textarea>
 				</section>
 				<section>
 					<div class="camera">

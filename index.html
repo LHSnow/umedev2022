@@ -79,6 +79,7 @@
 			display: flex;
 			flex-direction: row;
 			align-items: flex-start;
+			justify-content: space-around;
 			margin: auto;
 		}
 		.timelapse figure {
@@ -101,7 +102,8 @@
 			align-items: center;
 		}
 		.libraries img {
-			height: 10vh;
+			height: 2em;
+			width: auto;
 		}
 		.libraries figcaption {
 			margin-right: 1em;
@@ -123,6 +125,9 @@
 		}
 		.masked .ma td:empty {
 			background-color: transparent;
+		}
+		h2 span.lowercase {
+			text-transform: lowercase;
 		}
 	</style>
 	<body>
@@ -185,7 +190,7 @@
 				</section>
 				<section>
 					<h2>ALIS_4D</h2>
-					<p>Auroral Large Image System</p>
+					<p>Auroral Large Imaging System</p>
 				</section>
 				<section>
 					<img src="alis4d_geo.svg">
@@ -236,8 +241,8 @@
 				<section>
 					<img src="earth.svg">
 				</section>
-				<section class="r-fit-text">
-					<p>AIDApy</p>
+				<section>
+					<h2>AIDA<span class="lowercase">py</span></h2>
 					<p>Auroral Image Data Analysis</p>
 				</section>
 				<section>
@@ -261,6 +266,7 @@
 					</div>
 				</section>
 				<section>
+					<img src="earth.svg" class="r-stretch">
 					<pre>
 						<code class="language-python"
 							data-trim
@@ -342,6 +348,7 @@ def starpos(ra, dec, utcTime, lat, long, alt=0):
 					</pre>
 				</section>
 				<section>
+					<img src="earth.svg" class="r-stretch">
 					<pre>
 						<code class="language-python"
 							data-trim
@@ -431,6 +438,7 @@ class StarCatalog:
 					</table>
 				</section>
 				<section>
+					<img src="camera.svg" class="r-stretch">
 					<pre>
 						<code data-trim data-noescape class="language-python">
 def inv_project_directions(self, u, v, image_size, cmtr=None):
@@ -441,6 +449,7 @@ def inv_project_directions(self, u, v, image_size, cmtr=None):
 					</pre>
 				</section>
 				<section>
+					<img src="camera.svg" class="r-stretch">
 					<pre>
 						<code class="language-python"
 							data-trim

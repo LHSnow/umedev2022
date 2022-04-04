@@ -458,7 +458,7 @@ class StarCatalog:
 					<img src="camera.svg" class="r-stretch"
 						 aria-description="Light travels through camera in unknown ways">
 					<pre>
-						<code data-trim data-noescape class="language-python">
+						<code data-trim class="language-python">
 def inv_project_directions(self, u, v, image_size, cmtr=None):
     """Transfers pixels line of sight to azimuth and zenith angles"""
     phi, theta = self.inv_model(u, v, image_size)
@@ -513,6 +513,48 @@ class TestProjectionTransferEdgeCases:
 						</code>
 					</pre>
 				</section>
+				<section>
+					<h2>Python: kommunikation</h2>
+					<h2>C: effektivitet</h2>
+					<p>Y: not both?</p>
+				</section>
+				<section>
+					<pre>
+						<code class="language-c" data-trim data-line-numbers="1|2-5|1">
+							<script type="text/template">
+void foo(double* in_array, double* out_array, int length) {
+	int i;
+	for(i = 0; i<length; i++) {
+		out_array[i] = in_array[i]*2;
+	}
+}
+							</script>
+						</code>
+					</pre>
+					<pre class="fragment">
+						<code class="language-python" data-trim
+							  data-line-numbers="1,3|5|9-13|16|17|18">
+import ctypes
+import numpy as np
+import numpy.ctypeslib as npct
+
+lib = ctypes.cdll.LoadLibrary('./foo.so')
+
+# Define the C-interface
+lib.foo.restype = None
+lib.foo.argtypes = [
+	npct.ndpointer(np.float64, ndim=1, flags='aligned, contiguous'),
+	npct.ndpointer(np.float64, ndim=1, flags='aligned, contiguous, writeable'),
+	ctypes.c_int,
+]
+
+# Example usage
+in_array = np.arange(10, dtype=np.float64)
+out_array = np.empty_like(in_array)
+lib.foo(in_array, out_array, ctypes.c_int(10))
+						</code>
+					</pre>
+				</section>
 				<section data-markdown>
 					<textarea data-template>
 						## Sammanfattning
@@ -538,7 +580,6 @@ class TestProjectionTransferEdgeCases:
 							</textarea>
 						</div>
 					</div>
-
 				</section>
 			</div>
 		</div>

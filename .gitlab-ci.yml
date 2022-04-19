@@ -1,0 +1,18 @@
+# Official framework image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/node/tags/
+image: node:latest
+
+default:
+  tags:
+    - IRF
+
+pages:
+  script:
+    # Path used by gitlab pages is "public"
+    - ln -s ./ public
+    # Install reveal.js
+    - npm install --only=production
+  artifacts:
+    paths:
+      - public
+

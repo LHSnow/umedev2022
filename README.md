@@ -12,7 +12,11 @@ To create a presentating using this template repository first
 
 To develop the presentation locally
 
-1. make sure `npm` is installed
-2. run `npm start` to start a local web server to show the presenatation at 
+1. make sure `npm` is installed:
+    * ubuntu: `sudo apt install nodejs npm`
+    * arch: `sudo pacman -S nodejs npm`
+    * ...
+2. run `npm install`
+3. run `npm start` to start a local web server to show the presenatation at 
 [http://localhost:8000/](http://localhost:8000/)
-3. develop `index.html`, the page will live update when modifications are made
+4. develop `index.html`, the page will live update when modifications are made

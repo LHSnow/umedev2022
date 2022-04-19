@@ -12,7 +12,14 @@ pages:
     - mkdir public
     # Install reveal.js and copy to publication site
     - npm install --only=production
-    - cp -rv ./* public/
+    - cp -rv css public/
+    - cp -rv js public/
+    - cp -rv dist public/
+    - cp -rv plugin public/
+    - cp -rv node_modules public/
+    - cp -rv static public/
+    - cp index.html public/
+    
   artifacts:
     paths:
       - public

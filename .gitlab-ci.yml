@@ -9,9 +9,10 @@ default:
 pages:
   script:
     # Path used by gitlab pages is "public"
-    - ln -s ./ public
-    # Install reveal.js
+    - mkdir public
+    # Install reveal.js and copy to publication site
     - npm install --only=production
+    - cp -rv ./* public/
   artifacts:
     paths:
       - public

@@ -1,6 +1,6 @@
 # irf-revealjs-presentation
 
-Base template for revealjs presentation
+Base IRF-flavour template for [revealjs](https://revealjs.com/) presentations
 
 ## Getting started
 

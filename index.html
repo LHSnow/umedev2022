@@ -1,62 +1,611 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>reveal.js</title>
+		<title>UMEDEV 2022</title>
 
-        <link rel="stylesheet" href="dist/reset.css">
-        <link rel="stylesheet" href="dist/reveal.css">
-        <link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
 
-        <!-- Theme used for syntax highlighted code -->
-        <link rel="stylesheet" href="plugin/highlight/monokai.css">
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                <section>
-                    Slide 1
-                    <img src="https://www.irf.se/branding/irf-neg.svg" alt="irf logo">
-                </section>
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<style>
+		.particle {
+			display: inline-block;
+			border: 0.1em solid white;
+			width: 2em;
+			height: 2em;
+			line-height: 2em;
+			font-size: 1.5em;
+			border-radius: 50%;
+			vertical-align: middle;
+		}
+		.oxygen {
+			color: #ff0000;
+			border-color: #ff0000;
+		}
+		.collision {
+			display: flex;
+			width: 50%;
+			justify-content: space-between;
+		}
+		.hit {
+			justify-content: flex-end;
+		}
+		.electron {
+			color: #ffff00;
+			border-color: #ffff00;
+		}
+		.excited {
+			color: #ffa500;
+			border-color: #ffa500;
+			border-width: 1em;
+		}
+		.emission {
+			vertical-align: middle;
+			display: inline-block;
+			color: #00ff00;
+			font-size: 2em;
+			margin-left: -.15em;
+			position: relative;
+		}
+		.emission sup {
+			position: absolute;
+			top: 0;
+			right: 0;
+			font-size: .4em;
+		}
+		[src="soho_c3.mp4"] {
+			border-radius: 50%;
+		}
+		[src="swpc_enlil.mp4"] {
+			filter: contrast(1.3) invert(0.13);
+		}
+		[src="alis4d_geo.svg"] {
+			filter: invert(1);
+		}
+		[src="numpy-arrays.png"] {
+			filter: invert(0.9);
+		}
+		[src="alis-2020-12-21-5577.mp4"] {
+			filter: contrast(1.4)
+		}
+		.camera,
+		.timelapse {
+			display: flex;
+			flex-direction: row;
+			align-items: flex-start;
+			justify-content: space-around;
+			margin: auto;
+		}
+		.timelapse figure {
+			display: flex;
+			flex-direction: column;
+		}
+		.timelapse figcaption {
+			font-size: 0.5em;
+		}
+		.libraries {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			margin: auto;
+		}
+		.libraries figure {
+			width: auto;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
+		.libraries img {
+			height: 2em;
+			width: auto;
+		}
+		.libraries figcaption {
+			margin-right: 1em;
+			margin-left: 3em;
+		}
+		.title-slide h2 {
+			margin-top: auto;
+		}
+		.reveal pre {
+			width: 100%;
+		}
+		.masked .ma td {
+			background-color: #74d275;
+			color: black;
+		}
+		.masked .bool td:not(:empty) {
+			background-color: #296e2a;
+			color: transparent;
+		}
+		.masked .ma td:empty {
+			background-color: transparent;
+		}
+		h2 span.lowercase {
+			text-transform: lowercase;
+		}
+	</style>
+	<body>
+		<section class="reveal">
+			<section class="slides">
+				<section data-background-image="aurora.jpg" class="r-fit-text">
+					<div class="title-slide" data-markdown>
+						<textarea data-template>
+							![Institutet för Rymdfysik](irf-neg.svg)
 
-                <section>
-                    Slide 2
-                    <img src="static/IRF_pres_eng_apr16-2.jpg" alt="irf buildings">
-                </section>
+							## Norrsken i fyra dimensioner
 
-                <section>
-                    Slide 3
-                    $$
-    \langle k_1 \otimes ... \otimes k_m|j_1 \otimes ... \otimes j_m\rangle_{\mathbb{H}_1 \otimes ... \otimes \mathbb{H}_m} =\\
-    = \langle k_1|j_1\rangle_{\mathbb{H}_1} ... \langle k_m|j_m\rangle_{\mathbb{H}_m}
-                    $$
-                </section>
-            </div>
-        </div>
+							Lars-Henrik Snow
+						</textarea>
+					</div>
+				</section>
+				<section>
+					<video src="soho_c3.mp4" class="r-stretch" loop alt="CMEs of late march 2022 as seen from LASCO"></video>
+				</section>
+				<section>
+					<video src="swpc_enlil.mp4" loop alt="Animation of CME hitting earth"></video>
+				</section>
+				<section data-background-image="magnetosheath.svg" data-background-size="contain"
+						 aria-description="Solar wind affecting the earth's magnetic field, causing daytime northern lights">
+				</section>
+				<section data-background-image="magnetosheath2.svg" data-background-size="contain"
+						 aria-description="Magnetic field recovering, causing magnetotail to snap back, creating nighttime northern lights">
+				</section>
+				<section>
+					<img src="Magnetic_deflection_helical_path.svg" alt="electron circling along magnetic field lines">
+				</section>
+				<section data-auto-animate aria-description="electron and oxygen">
+					<div class="collision">
+						<span class="particle electron" data-id="electron">&mdash;</span>
+						<span class="particle oxygen" data-id="oxygen">O</span>
+					</div>
+				</section>
+				<section data-auto-animate data-auto-animate-easing="linear" data-auto-animate-duration="0.2"
+						 aria-description="electron colliding with oxygen">
+					<div class="collision hit">
+						<span class="particle electron" data-id="electron">&mdash;</span>
+						<span class="particle oxygen" data-id="oxygen">O</span>
+					</div>
+				</section>
+				<section data-auto-animate aria-description="oxygen gets excited from collision">
+					<span class="particle excited" data-id="oxygen">O</span>
+				</section>
+				<section data-auto-animate aria-description="oxygen emits excessive energy as light">
+					<span class="particle oxygen" data-id="oxygen">O</span>
+					<span class="emission">⟿<sup>5577Å</sup></span>
+				</section>
+				<section data-background-color="black"
+						 aria-description="All-sky and ALIS 4D timelapse of the same northern lights from various angles">
+					<div class="timelapse">
+						<figure>
+							<figcaption>8Mpx, 8-bit, 1 bild/minut</figcaption>
+							<video src="allsky-2020-12-21.mp4" loop></video>
+						</figure>
+						<figure>
+							<figcaption>1Mpx, 16-bit, upp till 100hz, Δ40Å</figcaption>
+							<video src="alis-2020-12-21-5577.mp4" loop></video>
+						</figure>
+					</div>
+				</section>
+				<section>
+					<h2>ALIS 4D</h2>
+					<p>Auroral Large Imaging System</p>
+				</section>
+				<section>
+					<img src="alis4d_geo.svg" alt="ALIS stations in Abisko, Kiruna, Tjautjas and Silkkimuotka">
+				</section>
+				<section data-background-image="IRF_pres_eng_apr16-2.jpg"
+						 data-background-size="contain"
+						 aria-description="Aerial photo of IRF headquarters, Kiruna, Sweden">
+				</section>
+				<section data-background-image="IRF_pres_eng_apr16-6.jpg"
+						 data-background-size="contain"
+						 aria-description="Domes on the roof of IRF Kiruna">
+				</section>
+				<section data-background-image="IRF_pres_eng_apr16-7.jpg"
+						 data-background-size="contain"
+						 aria-description="All-sky camera inside dome">
+				</section>
+				<section data-background-image="11.ALIS4D_Silki.jpg"
+						 data-background-size="contain"
+						 aria-description="Skiing to Silkkimuotka station">
+				</section>
+				<section data-background-image="06.ALIS4D_Silki.jpg"
+						 data-background-size="contain"
+						 aria-description="Tight workspace inside Silkkimuotka station">
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						* Works on my machine
+						* Från pixlar till fysik
+						* Till lärde män på latin
+					</textarea>
+				</section>
+				<section>
+					<h2>Reproducerbarhet</h2>
+					<p>"Works on my machine"</p>
+				</section>
+				<section>
+					<h1>DevOps</h1>
+				</section>
+				<section>
+					<div class="camera">
+						<div>
+							<img src="camera.svg" aria-description="Light travels through camera in unknown ways">
+						</div>
+						<div class="fragment">
+							$$
+							R = f \sin(\theta \alpha) \\
+							\theta = \frac{1} {\alpha} \operatorname{asin} \left( \frac{f} {R} \right)
+							$$
+						</div>
+					</div>
+				</section>
+				<section>
+					<video src="rotation.mp4" class="r-stretch" alt="ALIS camera rotation"></video>
+				</section>
+				<section>
+					<img src="alis4d_geo.svg" alt="ALIS stations in Abisko, Kiruna, Tjautjas and Silkkimuotka">
+				</section>
+				<section>
+					<img src="earth.svg" alt="Star positions can be calculated knowing time and position">
+				</section>
+				<section>
+					<h2>AIDA<span class="lowercase">py</span></h2>
+					<p>Auroral Image Data Analysis</p>
+				</section>
+				<section>
+					<h2>Trigonometri + Linjär algebra</h2>
+					<p>Rotationsmatriser och coordinatsystem</p>
+				</section>
+				<section>
+					<div class="libraries">
+						<figure>
+							<figcaption>AstroPy</figcaption>
+							<img src="astropy.svg">
+						</figure>
+						<figure>
+							<figcaption>NumPy</figcaption>
+							<img src="numpy.svg">
+						</figure>
+						<figure>
+							<figcaption>SciPy</figcaption>
+							<img src="scipy.svg">
+						</figure>
+					</div>
+				</section>
+				<section>
+					<img src="earth.svg" class="r-stretch"
+						 alt="Star positions can be calculated knowing time and position">
+					<pre>
+						<code class="language-python"
+							data-trim
+							data-line-numbers="1-2|11-12|20-24|63-69">
+def starpos(ra, decl, date_i, utc, lat, long):
+	"""az, ze and apparent zenith angles for a sky object"""
+	# calculate local sidereal time.
+	rsidtime = utc2losidt(date_i, utc, long) / 12 * pi
 
-        <script src="dist/reveal.js"></script>
-        <script src="plugin/notes/notes.js"></script>
-        <script src="plugin/markdown/markdown.js"></script>
-        <script src="plugin/highlight/highlight.js"></script>
-        <script src="plugin/animate/plugin.js"></script>
-        <script src="plugin/animate/svg.min.js"></script>
-        <script src="plugin/math/math.js"></script>
-        <script>
-            // More info about initialization & config:
-            // - https://revealjs.com/initialization/
-            // - https://revealjs.com/config/
-            Reveal.initialize({
-                hash: true, // permalinkable urls
-                controls: false, // hide arrows
-                autoPlayMedia: true, 
-                progress: false, // no spoilers on number of slides
-                width: 1200, // default is a little too narrow on modern screens
-                slideNumber: "c", // just the current slide number, again no spoilers
+	rra = ra.transpose() / 12 * pi
+	rdecl = decl.transpose() / 180 * pi
+	rlong = long / 180 * pi
+	rlat = lat / 180 * pi
 
-                plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ] // add math as default plugin
-            });
-        </script>
-    </body>
+	t = (date2juldate(date_i) - 2451545.0) / 36525
+	d = date2juldate(date_i) - date2juldate([1985, 1, 1])
+
+	# Cartesian coordinates on the celestial sphere
+	r = eye(3)
+	r[0, :] = cos(rdecl) * cos(rra)
+	r[1, :] = cos(rdecl) * sin(rra)
+	r[2, :] = sin(rdecl)
+
+	#  rigorous precession
+	Za = (0.6406161 * t + 0.0000839 * t ** 2 + 0.0000050 * t ** 3) / 180 * pi
+	za = (0.6406161 * t + 0.0003041 * t ** 2 + 0.0000051 * t ** 3) / 180 * pi
+	ta = (0.5567530 * t + 0.0001185 * t ** 2 + 0.0000116 * t ** 3) / 180 * pi
+
+	P = [[-sin(Za) * sin(za) + cos(Za) * cos(za) * cos(ta),
+	     -cos(Za) * sin(za) - sin(Za) * cos(za) * cos(ta),
+	     -cos(za) * sin(ta)],
+	    [sin(Za) * cos(za) + cos(Za) * sin(za) * cos(ta),
+	     cos(Za) * cos(za) - sin(Za) * sin(za) * cos(ta), -sin(za) * sin(ta)],
+	    [cos(Za) * sin(ta), sin(Za) * sin(ta), cos(ta)]]
+
+	# replace unimplemented nutation(Obsdate,utc) scilab function with
+	# its default output
+	N = eye(3)
+
+	rp = N * P * r
+	rdecl = arcsin(rp[3, :])
+	rra = arctan(rp[2, :] / cos(rdecl), rp[1, :] / cos(rdecl))
+
+	rcorrdecl = rdecl
+	cosaz = cos(rra)
+	sinaz = sin(rra)
+	rcorrra = rra
+
+	alt = arcsin(
+	   cos(rsidtime - rra) * cos(rdecl) * cos(rlat) + sin(rdecl) * sin(rlat))
+	ze = pi / 2 - alt.transpose()
+
+	sina = sin(rsidtime - rra) * cos(rdecl) / cos(alt)
+	cosa = (cos(rsidtime - rra) * cos(rdecl) * sin(rlat) - sin(rdecl) * cos(
+	   rlat)) / cos(alt)
+	az = arctan(sina.transpose(), cosa.transpose()) + pi
+	apze = refrcorr(ze)
+
+	return az, ze, apze
+
+def starpos(ra, dec, utcTime, lat, long, alt=0):
+    """az, ze and apparent zenith angles for a sky object.
+		Using astropy SkyCoord."""
+
+    ra = np.array(ra * u.hourangle)
+    dec = np.array(dec * u.degree)
+    sky_coord = SkyCoord(ra, dec, frame=FK5, unit=(u.hourangle, u.degree))
+    earth_location = EarthLocation.from_geodetic(lat=lat * u.degree,
+                                                 lon=long * u.degree,
+                                                 height=alt)
+    observation_time = Time(utcTime)
+    sky_obj = sky_coord.transform_to(AltAz(obstime=observation_time,
+                                           location=earth_location))
+    vectorized_refrcorr = np.vectorize(refrcorr)
+    apze = vectorized_refrcorr(sky_obj.zen.radian)
+
+    return sky_obj.az.radian, sky_obj.zen.radian, apze
+						</code>
+					</pre>
+				</section>
+				<section>
+					<img src="earth.svg" class="r-stretch"
+						 alt="Star positions can be calculated knowing time and position">
+					<pre>
+						<code class="language-python"
+							data-trim
+							data-line-numbers="3-10|20-26|27-32|49-50">
+class TestAstropyStarposHasSimilarResultToScilabImplementation:
+    def setup(self):
+        # BSC5P catalog objects 1-indexed 197,961,9033,9041,9058,9074
+        self.ra = np.array(
+            [0.7775,
+             3.2633333,
+             23.912944,
+             23.944861,
+             23.988528,
+             0.0361667] * u.hourangle)
+        self.decl = np.array(
+            [69.325,
+             57.140833,
+             0.1091667,
+             22.648056,
+             6.8633333,
+             27.081944] * u.degree)
+
+    def test_for_optiklab_2020(self):
+        lat = 67.840722
+        long = 20.411111
+        utcTime = "2020-12-21 19:09:00"
+        az, ze, apze = starpos(self.ra, self.decl,
+                               utcTime,
+                               lat,
+                               long)
+        az_sci = np.array([5.0895443,
+                           2.6148459,
+                           3.8705633,
+                           3.985045,
+                           3.8820959,
+                           3.9897205])
+        ze_sci = np.array([0.1693805,
+                           0.2042894,
+                           1.2718188,
+                           0.8912492,
+                           1.1527829,
+                           0.8109606])
+        apze_sci = np.array([0.1693324,
+                             0.2042311,
+                             1.2709067,
+                             0.8909012,
+                             1.1521501,
+                             0.8106647])
+
+        rel_to_scilab_ze = _great_circle_distance(az, ze, az_sci, ze_sci)
+        rel_to_scilab_apze = _great_circle_distance(az, apze, az_sci, apze_sci)
+
+        npt.assert_allclose(rel_to_scilab_ze, np.zeros(6), atol=1e-03)
+        npt.assert_allclose(rel_to_scilab_apze, np.zeros(6), atol=1e-03)
+
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h1>Vectorization</h1>
+				</section>
+				<section>
+					<img src="numpy-arrays.png" class="r-stretch"
+						 alt="python lists vs numpy arrays, the latter with a lot less pointers">
+				</section>
+				<section>
+					<pre>
+						<code class="language-python"
+							  data-trim
+							  data-line-numbers="4|5|6|7">
+class StarCatalog:
+	"""Abstract Base Class for accessing listed properties
+	from Star Catalogues like BSC5P"""
+	ra = np.array([], dtype=float)
+	dec = np.array([], dtype=float)
+	magnitude = np.array([], dtype=float)
+	bright_star_no = np.array([], dtype=int)
+						</code>
+					</pre>
+				</section>
+				<section>
+					<table class="masked">
+						<tr class="data"><th>Memory</th><td>1</td><td>2</td><td>5</td><td>8</td><td>4</td><td>3</td>
+						</tr>
+						<tr class="bool"><th>Odd</th><td>x</td><td></td><td>x</td><td></td><td></td><td>x</td></tr>
+						<tr class="bool"><th>&gt;2</th><td></td><td></td><td>x</td><td>x</td><td>x</td><td>x</td></tr>
+						<tr class="ma"><th>Masked</th><td></td><td></td><td>5</td><td></td><td></td><td>3</td></tr>
+					</table>
+				</section>
+				<section>
+					<img src="camera.svg" class="r-stretch"
+						 aria-description="Light travels through camera in unknown ways">
+					<pre>
+						<code data-trim class="language-python">
+def inv_project_directions(self, u, v, image_size, cmtr=None):
+    """Transfers pixels line of sight to azimuth and zenith angles"""
+    phi, theta = self.inv_model(u, v, image_size)
+    return self._relative_to_local_horizon(phi, theta, cmtr)
+						</code>
+					</pre>
+				</section>
+				<section>
+					<img src="camera.svg" class="r-stretch"
+						 aria-description="Light travels through camera in unknown ways">
+					<pre>
+						<code class="language-python"
+							data-trim
+							data-line-numbers="3|16-21|35|36-37|29-30|26-27">
+class TestProjectionTransferEdgeCases:
+  @pytest.fixture(autouse=True)
+  def transfer_and_its_inverse_with_edge_cases(self):
+      self.camera = Camera(
+          horizontal_focal_length=6.13576098e-01,
+          vertical_focal_length=-6.13937768e-01,
+          alpha_rotation=3.11357351e+01,
+          beta_rotation=7.86213938e+00,
+          gamma_rotation=3.04635402e+00,
+          horizontal_displacement=3.88947223e-03,
+          vertical_displacement=-2.14373428e-02,
+          pinhole_deviation=1.00651214e+00,
+      )
+      shape = (1024, 1024)
+      self.shape = shape
+      edges = [
+          np.full((shape[0],), 0, dtype=np.int64),
+          np.arange(shape[1], dtype=np.int64),
+          np.full((shape[0],), shape[1] - 1, dtype=np.int64),
+          np.arange(shape[1], dtype=np.int64)[::-1],
+      ]
+
+      self.u = np.hstack(edges)
+      self.v = np.hstack(edges)
+
+      # each test runs here
+      yield
+
+      npt.assert_allclose(self.u_prime, self.u, atol=12)
+      npt.assert_allclose(self.v_prime, self.v, atol=12)
+
+  def test_alis_projection(self):
+      self.camera.optical_transfer = alis3d
+      self.camera.inverse_optical_transfer = inv_alis3d
+      az, ze = self.camera.inv_project_directions(self.u, self.v, self.shape)
+      self.u_prime, self.v_prime = self.camera.project_directions(az, ze,
+                                                                  self.shape)
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h2>Python: kommunikation</h2>
+					<h2>C: effektivitet</h2>
+					<p>Y: not both?</p>
+				</section>
+				<section>
+					<pre>
+						<code class="language-c" data-trim data-line-numbers="1|2-5|1">
+							<script type="text/template">
+void foo(double* in_array, double* out_array, int length) {
+	int i;
+	for(i = 0; i<length; i++) {
+		out_array[i] = in_array[i]*2;
+	}
+}
+							</script>
+						</code>
+					</pre>
+					<pre class="fragment">
+						<code class="language-python" data-trim
+							  data-line-numbers="1,3|5|9-13|16|17|18">
+import ctypes
+import numpy as np
+import numpy.ctypeslib as npct
+
+lib = ctypes.cdll.LoadLibrary('./foo.so')
+
+# Define the C-interface
+lib.foo.restype = None
+lib.foo.argtypes = [
+	npct.ndpointer(np.float64, ndim=1, flags='aligned, contiguous'),
+	npct.ndpointer(np.float64, ndim=1, flags='aligned, contiguous, writeable'),
+	ctypes.c_int,
+]
+
+# Example usage
+in_array = np.arange(10, dtype=np.float64)
+out_array = np.empty_like(in_array)
+lib.foo(in_array, out_array, ctypes.c_int(10))
+						</code>
+					</pre>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						## Sammanfattning
+
+						* Solvind och energiöverföring
+						* Mer DevOps
+						* Gemensamt språk
+						* Effektiva datastrukturer
+					</textarea>
+				</section>
+				<section>
+					<div class="camera">
+						<div>
+							<img src="camera.svg" aria-description="Light travels through camera in unknown ways">
+						</div>
+						<div data-markdown>
+							<textarea data-template>
+								## Lars-Henrik.Snow@irf.se
+
+								### Twitter: @l9ksnow
+
+								slides: lhsnow.github.io/umedev2022
+							</textarea>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="plugin/animate/plugin.js"></script>
+		<script src="plugin/animate/svg.min.js"></script>
+		<script src="plugin/math/math.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+				controls: false,
+				autoPlayMedia: true,
+				progress: false,
+				width: 1200,
+				slideNumber: "c",
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+		</script>
+	</body>
 </html>
